@@ -1,7 +1,7 @@
 {
-  "name": "@technote-space/ts-package-template",
+  "name": "@technote-space/gutenberg-test-utils",
   "version": "0.0.5",
-  "description": "Template for npm package.",
+  "description": "gutenberg test utils",
   "author": {
     "name": "Technote",
     "email": "technote.space@gmail.com",
@@ -12,13 +12,13 @@
     "github",
     "github actions"
   ],
-  "homepage": "https://github.com/technote-space/ts-package-template",
+  "homepage": "https://github.com/technote-space/gutenberg-test-utils",
   "repository": {
     "type": "git",
-    "url": "https://github.com/technote-space/ts-package-template.git"
+    "url": "https://github.com/technote-space/gutenberg-test-utils.git"
   },
   "bugs": {
-    "url": "https://github.com/technote-space/ts-package-template/issues"
+    "url": "https://github.com/technote-space/gutenberg-test-utils/issues"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,7 +27,6 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "@technote-space/github-action-test-helper": "^0.2.2",
     "@types/jest": "^25.1.2",
     "@types/node": "^13.7.1",
     "@typescript-eslint/eslint-plugin": "^2.19.2",
@@ -42,7 +41,6 @@
     "access": "public"
   },
   "scripts": {
-    "setup": "bash bin/setup.sh && if [[ -f __DELETE__ ]]; then rm -rdf bin; rm -f __DELETE__; fi",
     "build": "tsc",
     "test": "yarn lint && yarn cover",
     "lint": "eslint 'src/**/*.ts' '__tests__/**/*.ts' --cache",
