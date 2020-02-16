@@ -29,6 +29,24 @@ This is a gutenberg's test utils.
     npm install --save-dev @technote-space/gutenberg-test-utils
     ```
 
+1. Setup
+
+    `jest.config.js`
+    ```js
+    module.exports = {
+        // ...
+
+        setupFiles: ['<rootDir>/jest.setup.ts']
+    };
+    
+    ```
+    `jest.setup.ts`
+    ```typescript
+    import { setupGlobal } from '@technote-space/gutenberg-test-utils';
+    
+    setupGlobal();
+    ```
+
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
 [Blog](https://technote.space)
