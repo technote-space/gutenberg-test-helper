@@ -1011,6 +1011,25 @@
   dependencies:
     "@babel/runtime" "^7.8.3"
 
+"@wordpress/format-library@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@wordpress/format-library/-/format-library-1.14.0.tgz#b177547a6f704576c008e6877bc13a0be955836c"
+  integrity sha512-sTE038UbHQwF0mwnYcbppFvyh9ESixh+EfOg1EB7S901xDBYuAFUs7uBpKks6Ct8FixBJ2JUJVWMG+AUlpwgjA==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+    "@wordpress/block-editor" "^3.7.0"
+    "@wordpress/components" "^9.2.0"
+    "@wordpress/data" "^4.14.0"
+    "@wordpress/dom" "^2.8.0"
+    "@wordpress/element" "^2.11.0"
+    "@wordpress/html-entities" "^2.6.0"
+    "@wordpress/i18n" "^3.9.0"
+    "@wordpress/icons" "^1.1.0"
+    "@wordpress/keycodes" "^2.9.0"
+    "@wordpress/rich-text" "^3.12.0"
+    "@wordpress/url" "^2.11.0"
+    lodash "^4.17.15"
+
 "@wordpress/hooks@^2.7.0":
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/@wordpress/hooks/-/hooks-2.7.0.tgz#34f8b612c1804a2332ab4c6906bf1695545f6a97"
