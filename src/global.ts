@@ -27,6 +27,8 @@ interface Global extends NodeJS.Global {
 	mockStdout: {
 		write: jest.Mock;
 	};
+
+	[key: string]: any;
 }
 
 declare const global: Global;

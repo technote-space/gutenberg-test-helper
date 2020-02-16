@@ -1,5 +1,6 @@
-/* eslint-disable no-magic-numbers */
+/* eslint-disable no-magic-numbers, @typescript-eslint/no-explicit-any */
 import { EOL } from 'os';
+import { has, get, set, unset } from 'lodash';
 import SpyInstance = jest.SpyInstance;
 import global from './global';
 
@@ -75,4 +76,43 @@ export const stdoutCalledWith = (spyOnMock: SpyInstance, messages: string[]): vo
 };
 export const stdoutContains   = (spyOnMock: SpyInstance, messages: string[]): void => {
 	expect(spyOnMock.mock.calls.map(value => value[0].trim())).toEqual(expect.arrayContaining(messages));
+};
+
+export const testGlobalParam = (defaultParams?: { [key: string]: any }): (path: string, param: any) => void => {
+	let params: { [key: string]: any } = {};
+	let backup: { [key: string]: any } = {};
+
+	const setParam = (path: string, param: any): void => {
+		if (has(global, path) && !(path in params)) {
+			set(backup, path, get(global, path));
+		}
+
+		params[path] = true;
+		set(global, path, param);
+	};
+
+	beforeEach(() => {
+		if (defaultParams) {
+			Object.keys(defaultParams).forEach(key => {
+				setParam(key, defaultParams[key]);
+			});
+		}
+	});
+
+	afterEach(() => {
+		Object.keys(params).reverse().forEach(path => {
+			if (has(backup, path)) {
+				set(global, path, get(backup, path));
+			} else {
+				unset(global, path);
+			}
+		});
+
+		params = {};
+		backup = {};
+	});
+
+	return (path: string, param: any): void => {
+		setParam(path, param);
+	};
 };

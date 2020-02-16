@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 import { EOL } from 'os';
-import { getFormatArgs, spyOnStdout, stdoutCalledWith, stdoutContains } from '../src';
+import { getFormatArgs, spyOnStdout, stdoutCalledWith, stdoutContains, testGlobalParam } from '../src';
 import global from '../src/global';
 
 describe('getFormatArgs', () => {
@@ -144,3 +144,52 @@ describe('spyOnStdout, stdoutCalledWith, stdoutCalledAtLeastOnce', () => {
 	});
 });
 
+describe('testGlobalParam', () => {
+	const setParams = testGlobalParam();
+
+	it('should set global param', () => {
+		expect(global).not.toHaveProperty('test_property');
+		setParams('test_property', 'abc');
+		expect(global).toHaveProperty('test_property');
+		expect(global['test_property']).toBe('abc');
+	});
+
+	it('should set global default param', () => {
+		expect(global).toHaveProperty('wp');
+		expect(typeof global.wp).toBe('object');
+		setParams('wp', 100);
+		expect(global.wp).toBe(100);
+	});
+
+	it('should be reset', () => {
+		expect(global).not.toHaveProperty('test_property');
+		expect(typeof global.wp).toBe('object');
+	});
+});
+describe('testGlobalParam with default params', () => {
+	const setParams = testGlobalParam({
+		default1: 'default1',
+		default2: {
+			value: 'default2',
+		},
+	});
+
+	it('should set global param', () => {
+		expect(global).toHaveProperty('default1');
+		expect(global).toHaveProperty('default2');
+		expect(global['default1']).toBe('default1');
+		expect(global['default2']['value']).toBe('default2');
+		setParams('default1', 0);
+		setParams('default2.value', 0);
+		setParams('default2.value', 2000);
+		expect(global['default1']).toBe(0);
+		expect(global['default2']['value']).toBe(2000);
+	});
+
+	it('should be reset', () => {
+		expect(global).toHaveProperty('default1');
+		expect(global).toHaveProperty('default2');
+		expect(global['default1']).toBe('default1');
+		expect(global['default2']['value']).toBe('default2');
+	});
+});
