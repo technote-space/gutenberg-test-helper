@@ -1,6 +1,6 @@
 {
-  "name": "@technote-space/gutenberg-test-utils",
-  "version": "0.0.1",
+  "name": "@technote-space/gutenberg-test-helper",
+  "version": "0.0.2",
   "description": "gutenberg test utils",
   "author": {
     "name": "Technote",
@@ -12,13 +12,13 @@
     "github",
     "github actions"
   ],
-  "homepage": "https://github.com/technote-space/gutenberg-test-utils",
+  "homepage": "https://github.com/technote-space/gutenberg-test-helper",
   "repository": {
     "type": "git",
-    "url": "https://github.com/technote-space/gutenberg-test-utils.git"
+    "url": "https://github.com/technote-space/gutenberg-test-helper.git"
   },
   "bugs": {
-    "url": "https://github.com/technote-space/gutenberg-test-utils/issues"
+    "url": "https://github.com/technote-space/gutenberg-test-helper/issues"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
