@@ -15,9 +15,7 @@ This is a gutenberg's test utils.
 <details>
 <summary>Details</summary>
 
-- [Setup](#setup)
-  - [yarn](#yarn)
-  - [npm](#npm)
+- [How to use](#how-to-use)
 - [Author](#author)
 
 </details>
@@ -27,6 +25,24 @@ This is a gutenberg's test utils.
 1. Install
     ```bash
     npm install --save-dev @technote-space/gutenberg-test-utils
+    ```
+
+1. Setup
+
+    `jest.config.js`
+    ```js
+    module.exports = {
+        // ...
+
+        setupFiles: ['<rootDir>/jest.setup.ts']
+    };
+    
+    ```
+    `jest.setup.ts`
+    ```typescript
+    import { setupGlobal } from '@technote-space/gutenberg-test-utils';
+    
+    setupGlobal();
     ```
 
 ## Author
