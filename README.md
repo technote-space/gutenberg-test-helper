@@ -15,9 +15,7 @@ This is a gutenberg's test utils.
 <details>
 <summary>Details</summary>
 
-- [Setup](#setup)
-  - [yarn](#yarn)
-  - [npm](#npm)
+- [How to use](#how-to-use)
 - [Author](#author)
 
 </details>
