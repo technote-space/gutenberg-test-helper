@@ -48,35 +48,6 @@ export const setupGlobal = (): void => {
 	console.error   = jest.fn(converter('__error__'));
 	console.warn    = jest.fn(converter('__warning__'));
 
-	global.wpMock = {
-		blockEditor: {
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			getColorObjectByColorValue: (colors: Array<object>, value?: string): object | undefined => undefined,
-		},
-		element: {
-			useRef: (): object => ({
-				current: {
-					contains: (): boolean => false,
-					focus: (): number => 0,
-					getBoundingClientRect: (): object => ({width: 0, height: 0}),
-					parentNode: {
-						getBoundingClientRect: (): object => ({width: 0, height: 0, left: 0, right: 0, top: 0, bottom: 0}),
-					},
-					querySelectorAll: (): Array<any> => [],
-				},
-			}),
-		},
-	};
-
-	jest.mock('@wordpress/block-editor', () => ({
-		...jest.requireActual('@wordpress/block-editor'),
-		getColorObjectByColorValue: (colors: Array<object>, value?: string): object | undefined => global.wpMock.blockEditor.getColorObjectByColorValue(colors, value),
-	}));
-	jest.mock('@wordpress/element', () => ({
-		...jest.requireActual('@wordpress/element'),
-		useRef: (): object => global.wpMock.element.useRef(),
-	}));
-
 	global.wp = {
 		apiFetch: require('@wordpress/api-fetch'),
 		blockEditor: require('@wordpress/block-editor'),

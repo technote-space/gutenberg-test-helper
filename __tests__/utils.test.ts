@@ -64,31 +64,6 @@ describe('getFormatArgs', () => {
 	});
 });
 
-describe('useRef', () => {
-	it('should use mock', () => {
-		const {useRef} = global.wp.element;
-		const testRef  = useRef(null);
-		expect(testRef).toHaveProperty('current');
-		expect(testRef.current).toHaveProperty('contains');
-		expect(testRef.current).toHaveProperty('focus');
-		expect(testRef.current).toHaveProperty('getBoundingClientRect');
-		expect(testRef.current).toHaveProperty('parentNode');
-		expect(testRef.current).toHaveProperty('querySelectorAll');
-		expect(testRef.current.contains()).toBe(false);
-		expect(testRef.current.focus()).toBe(0);
-		expect(testRef.current.getBoundingClientRect()).toEqual({width: 0, height: 0});
-		expect(testRef.current.parentNode.getBoundingClientRect()).toEqual({width: 0, height: 0, left: 0, right: 0, top: 0, bottom: 0});
-		expect(testRef.current.querySelectorAll()).toEqual([]);
-	});
-});
-
-describe('getColorObjectByColorValue', () => {
-	it('should use mock', () => {
-		const {getColorObjectByColorValue} = global.wp.blockEditor;
-		expect(getColorObjectByColorValue([], 'test')).toBeUndefined();
-	});
-});
-
 describe('spyOnStdout, stdoutCalledWith, stdoutCalledAtLeastOnce', () => {
 	it('should spy on stdout', () => {
 		const spy = spyOnStdout();
