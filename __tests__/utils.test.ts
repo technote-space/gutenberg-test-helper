@@ -165,15 +165,26 @@ describe('testGlobalParam', () => {
 	});
 
 	it('should set global default param', () => {
-		expect(global).toHaveProperty('wp');
-		expect(typeof global.wp).toBe('object');
-		setParams('wp', 100);
-		expect(global.wp).toBe(100);
+		expect(global).toHaveProperty('testParams');
+		expect(typeof global.testParams).toBe('object');
+		expect(global.testParams).toHaveProperty('test1');
+		expect(global.testParams).toHaveProperty('test2');
+		expect(global.testParams).toHaveProperty('test3');
+		expect(global.testParams).toHaveProperty('test4');
+		expect(global.testParams.test1).toBe(1);
+		expect(global.testParams.test2).toBe('test2');
+		expect(global.testParams.test3).toEqual([1, 2, 3]);
+		expect(global.testParams.test4).toEqual({
+			'test4-1': 1,
+			'test4-2': 2,
+		});
+		setParams('testParams', 100);
+		expect(global.testParams).toBe(100);
 	});
 
 	it('should be reset', () => {
 		expect(global).not.toHaveProperty('test_property');
-		expect(typeof global.wp).toBe('object');
+		expect(typeof global.testParams).toBe('object');
 	});
 });
 describe('testGlobalParam with default params', () => {
