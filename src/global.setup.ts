@@ -33,6 +33,9 @@ export const setupGlobal = (settings?: {
 		serverSideRender?: boolean;
 		url?: boolean;
 	};
+	mockLodashDebounce?: boolean;
+	mockMatchMedia?: boolean;
+	mockStdout?: boolean;
 	registerCoreBlocks?: boolean;
 	removeAllFilters?: boolean;
 	globalParams?: { [key: string]: any };
@@ -49,33 +52,42 @@ export const setupGlobal = (settings?: {
 	global.document  = dom.window.document;
 	global.navigator = dom.window.navigator;
 
-	global.window.lodash          = lodash;
-	global.window.lodash.debounce = (fn: () => any): Function => {
-		const debounced = (): any => {
-			return fn();
+	global.window.lodash = lodash;
+	/* istanbul ignore next */
+	if (settings?.mockLodashDebounce ?? true) {
+		global.window.lodash.debounce = (fn: () => any): Function => {
+			const debounced = (): any => {
+				return fn();
+			};
+
+			debounced.cancel = jest.fn();
+			debounced.flush  = jest.fn();
+			return debounced;
 		};
+	}
+	/* istanbul ignore next */
+	if (settings?.mockMatchMedia ?? true) {
+		global.window.matchMedia = (): object => ({
+			matches: true,
+			addListener: (): void => {
+				//
+			},
+		});
+	}
 
-		debounced.cancel = jest.fn();
-		debounced.flush  = jest.fn();
-		return debounced;
-	};
-	global.window.matchMedia      = (): object => ({
-		matches: true,
-		addListener: (): void => {
-			//
-		},
-	});
-
-	global.mockStdout    = {
-		write: jest.fn(),
-	};
-	process.stdout.write = global.mockStdout.write;
-	type converterType = (value: any) => boolean;
-	const converter = (prefix = ''): converterType => (value: any): boolean => process.stdout.write(prefix + JSON.stringify(value, null, '\t') + EOL);
-	console.log     = jest.fn(converter());
-	console.info    = jest.fn(converter('__info__'));
-	console.error   = jest.fn(converter('__error__'));
-	console.warn    = jest.fn(converter('__warning__'));
+	/* istanbul ignore next */
+	if (settings?.mockStdout ?? true) {
+		global.mockStdout    = {
+			write: jest.fn(),
+		};
+		process.stdout.write = global.mockStdout.write;
+		type converterType = (value: any) => boolean;
+		const converter = (prefix = ''): converterType => (value: any): boolean => process.stdout.write(prefix + JSON.stringify(value, null, '\t') + EOL);
+		console.log     = jest.fn(converter());
+		console.info    = jest.fn(converter('__info__'));
+		console.error   = jest.fn(converter('__error__'));
+		console.warn    = jest.fn(converter('__warning__'));
+	}
 
 	const useRef  = (initialValue): any => {
 		if (typeof initialValue === 'function') {
