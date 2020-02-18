@@ -6,6 +6,7 @@ import Mousetrap from 'mousetrap';
 import 'mousetrap/plugins/global-bind/mousetrap-global-bind';
 import lodash from 'lodash';
 import { EOL } from 'os';
+import { get, set } from 'lodash';
 import global from './global';
 
 export const setupGlobal = (settings?: {
@@ -34,6 +35,7 @@ export const setupGlobal = (settings?: {
 	};
 	registerCoreBlocks?: boolean;
 	removeAllFilters?: boolean;
+	globalParams?: { [key: string]: any };
 }): void => {
 	enzyme.configure({
 		adapter: new EnzymeAdapter(),
@@ -154,5 +156,11 @@ export const setupGlobal = (settings?: {
 	/* istanbul ignore next */
 	if (settings?.removeAllFilters ?? true) {
 		global.wp.hooks.removeAllFilters('editor.BlockEdit');
+	}
+	/* istanbul ignore next */
+	if (settings?.globalParams) {
+		Object.keys(settings.globalParams).forEach(name => {
+			set(global, name, get(settings?.globalParams, name));
+		});
 	}
 };
