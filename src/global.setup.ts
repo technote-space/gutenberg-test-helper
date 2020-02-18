@@ -36,6 +36,7 @@ export const setupGlobal = (settings?: {
 	registerCoreBlocks?: boolean;
 	removeAllFilters?: boolean;
 	globalParams?: { [key: string]: any };
+	setup?: (global: NodeJS.Global) => void;
 }): void => {
 	enzyme.configure({
 		adapter: new EnzymeAdapter(),
@@ -162,5 +163,9 @@ export const setupGlobal = (settings?: {
 		Object.keys(settings.globalParams).forEach(name => {
 			set(global, name, get(settings?.globalParams, name));
 		});
+	}
+	/* istanbul ignore next */
+	if (settings?.setup) {
+		settings.setup(global);
 	}
 };
