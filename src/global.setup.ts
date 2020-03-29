@@ -72,6 +72,9 @@ export const setupGlobal = (settings?: {
 			addListener: (): void => {
 				//
 			},
+			removeListener: (): void => {
+				//
+			},
 		});
 	}
 
