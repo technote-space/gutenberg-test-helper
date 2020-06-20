@@ -36,83 +36,83 @@ export const getFormatArgs = (settings?: {
 	end?: number;
 	isActive?: boolean;
 }): FormatArgsType => {
-	const onChange   = settings?.onChange ?? (() => (): void => {
-		//
-	});
-	const formatName = settings?.formatName ?? 'test/format';
-	const formats    = settings?.formats ?? Array(settings?.formatLength ?? 3).fill(settings?.format ?? [
-		{
-			attributes: {},
-			type: formatName,
-			unregisteredAttributes: {},
-		},
-	]);
-	const text       = settings?.text ?? 'text';
-	const start      = settings?.start ?? 0;
-	const end        = settings?.end ?? 1;
-	const isActive   = settings?.isActive ?? true;
+  const onChange   = settings?.onChange ?? (() => (): void => {
+    //
+  });
+  const formatName = settings?.formatName ?? 'test/format';
+  const formats    = settings?.formats ?? Array(settings?.formatLength ?? 3).fill(settings?.format ?? [
+    {
+      attributes: {},
+      type: formatName,
+      unregisteredAttributes: {},
+    },
+  ]);
+  const text       = settings?.text ?? 'text';
+  const start      = settings?.start ?? 0;
+  const end        = settings?.end ?? 1;
+  const isActive   = settings?.isActive ?? true;
 
-	return {
-		args: {
-			isActive,
-			value: {
-				start,
-				end,
-				text,
-				formats,
-			},
-			onChange: onChange(formatName),
-		},
-		formatName: formatName,
-	};
+  return {
+    args: {
+      isActive,
+      value: {
+        start,
+        end,
+        text,
+        formats,
+      },
+      onChange: onChange(formatName),
+    },
+    formatName: formatName,
+  };
 };
 
 export const spyOnStdout      = (): SpyInstance => jest.spyOn(global.mockStdout, 'write');
 export const stdoutCalledWith = (spyOnMock: SpyInstance, messages: string[]): void => {
-	expect(spyOnMock).toBeCalledTimes(messages.length);
-	messages.forEach((message, index) => {
-		expect(spyOnMock.mock.calls[index][0]).toBe(message + EOL);
-	});
+  expect(spyOnMock).toBeCalledTimes(messages.length);
+  messages.forEach((message, index) => {
+    expect(spyOnMock.mock.calls[index][0]).toBe(message + EOL);
+  });
 };
 export const stdoutContains   = (spyOnMock: SpyInstance, messages: string[]): void => {
-	expect(spyOnMock.mock.calls.map(value => value[0].trim())).toEqual(expect.arrayContaining(messages));
+  expect(spyOnMock.mock.calls.map(value => value[0].trim())).toEqual(expect.arrayContaining(messages));
 };
 
 export const testGlobalParam = (defaultParams?: { [key: string]: any }): (path: string, param: any) => void => {
-	let params: { [key: string]: any } = {};
-	let backup: { [key: string]: any } = {};
+  let params: { [key: string]: any } = {};
+  let backup: { [key: string]: any } = {};
 
-	const setParam = (path: string, param: any): void => {
-		if (has(global, path) && !(path in params)) {
-			set(backup, path, get(global, path));
-		}
+  const setParam = (path: string, param: any): void => {
+    if (has(global, path) && !(path in params)) {
+      set(backup, path, get(global, path));
+    }
 
-		params[path] = true;
-		set(global, path, param);
-	};
+    params[path] = true;
+    set(global, path, param);
+  };
 
-	beforeEach(() => {
-		if (defaultParams) {
-			Object.keys(defaultParams).forEach(key => {
-				setParam(key, defaultParams[key]);
-			});
-		}
-	});
+  beforeEach(() => {
+    if (defaultParams) {
+      Object.keys(defaultParams).forEach(key => {
+        setParam(key, defaultParams[key]);
+      });
+    }
+  });
 
-	afterEach(() => {
-		Object.keys(params).reverse().forEach(path => {
-			if (has(backup, path)) {
-				set(global, path, get(backup, path));
-			} else {
-				unset(global, path);
-			}
-		});
+  afterEach(() => {
+    Object.keys(params).reverse().forEach(path => {
+      if (has(backup, path)) {
+        set(global, path, get(backup, path));
+      } else {
+        unset(global, path);
+      }
+    });
 
-		params = {};
-		backup = {};
-	});
+    params = {};
+    backup = {};
+  });
 
-	return (path: string, param: any): void => {
-		setParam(path, param);
-	};
+  return (path: string, param: any): void => {
+    setParam(path, param);
+  };
 };
