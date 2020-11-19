@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers, @typescript-eslint/no-explicit-any, @typescript-eslint/no-var-requires */
 import { JSDOM } from 'jsdom';
 import enzyme from 'enzyme';
-import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17';
+import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Mousetrap from 'mousetrap';
 import 'mousetrap/plugins/global-bind/mousetrap-global-bind';
 import lodash from 'lodash';
