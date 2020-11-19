@@ -2,6 +2,7 @@ on: push
 
 name: CI
 
+
 jobs:
   eslint:
     name: ESLint
