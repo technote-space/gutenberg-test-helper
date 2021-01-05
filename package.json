@@ -60,9 +60,9 @@
     "jsdom": "^16.4.0",
     "lodash": "^4.17.20",
     "mousetrap": "^1.6.5",
-    "react": "17.0.1",
+    "react": "16.14.0",
     "react-autosize-textarea": "^7.1.0",
-    "react-dom": "17.0.1"
+    "react-dom": "16.14.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
