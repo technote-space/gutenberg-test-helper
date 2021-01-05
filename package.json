@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/gutenberg-test-helper",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "gutenberg test utils",
   "keywords": [
     "github",
@@ -31,7 +31,7 @@
     "lint": "eslint 'src/**/*.ts' '__tests__/**/*.ts' --cache",
     "lint:fix": "eslint --fix 'src/**/*.ts' '__tests__/**/*.ts'",
     "test": "yarn lint && yarn cover",
-    "update": "npx npm-check-updates -u && yarn install && yarn upgrade && yarn audit"
+    "update": "npx npm-check-updates -u -x react,react-dom && yarn install && yarn upgrade && yarn audit"
   },
   "dependencies": {
     "@wordpress/api-fetch": "^3.21.0",
