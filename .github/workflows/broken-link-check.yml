@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: 54 18 11 * *
+    - cron: 39 15 20 * *
   repository_dispatch:
     types: [check-link]
   workflow_dispatch:
