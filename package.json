@@ -67,10 +67,10 @@
   "devDependencies": {
     "@types/jest": "^26.0.22",
     "@types/lodash": "^4.14.168",
-    "@types/mousetrap": "^1.6.5",
+    "@types/mousetrap": "^1.6.6",
     "@types/node": "^14.14.37",
-    "@typescript-eslint/eslint-plugin": "^4.19.0",
-    "@typescript-eslint/parser": "^4.19.0",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
     "eslint": "^7.23.0",
     "eslint-plugin-react": "^7.23.1",
     "jest": "^26.6.3",
