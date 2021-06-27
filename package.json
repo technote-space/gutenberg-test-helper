@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/gutenberg-test-helper",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "gutenberg test utils",
   "keywords": [
     "github",
@@ -55,7 +55,6 @@
     "@wordpress/server-side-render": "^2.1.5",
     "@wordpress/url": "^3.1.1",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
     "jsdom": "^16.6.0",
     "lodash": "^4.17.21",

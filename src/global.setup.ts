@@ -1,7 +1,6 @@
 /* eslint-disable no-magic-numbers, @typescript-eslint/no-explicit-any, @typescript-eslint/no-var-requires */
 import { JSDOM } from 'jsdom';
 import enzyme from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Mousetrap from 'mousetrap';
 import 'mousetrap/plugins/global-bind/mousetrap-global-bind';
 import lodash from 'lodash';
@@ -42,7 +41,6 @@ export const setupGlobal = (settings?: {
   setup?: (global: NodeJS.Global) => void;
 }): void => {
   enzyme.configure({
-    adapter: new EnzymeAdapter(),
     snapshotSerializers: ['enzyme-to-json/serializer'],
   });
   global.Mousetrap = Mousetrap;
