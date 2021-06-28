@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/gutenberg-test-helper",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "gutenberg test utils",
   "keywords": [
     "github",
@@ -34,6 +34,7 @@
     "update": "npx npm-check-updates -u --timeout 100000 && yarn install && yarn upgrade && yarn audit"
   },
   "dependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
     "@wordpress/api-fetch": "^5.1.1",
     "@wordpress/block-editor": "^6.1.7",
     "@wordpress/block-library": "^3.2.10",
@@ -70,7 +71,6 @@
     "@types/node": "^15.12.5",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
     "eslint": "^7.29.0",
     "eslint-plugin-react": "^7.24.0",
     "jest": "^27.0.5",
